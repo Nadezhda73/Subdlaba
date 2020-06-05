@@ -55,5 +55,39 @@ namespace Subdlaba.Services
         {
             return db.Projects.FirstOrDefault(c => c.Id == Id);
         }
+        public void CreateProject(string Name)
+        {
+            Project project = new Project()
+            {
+                Name = Name
+            };
+            Create(project);
+        }
+        public void DeleteProject(int Id, string Name)
+        {
+            Project project = new Project()
+            {
+                Id = Id,
+                Name = Name
+            };
+            Delete(project);
+        }
+
+        public void UpdateProject(int Id, string Name)
+        {
+            Project project = new Project()
+            {
+                Id = Id,
+                Name = Name
+            };
+            Update(project);
+        }
+        public void ReadProject()
+        {
+            foreach (var p in Read())
+            {
+                Console.WriteLine(p.Name);
+            }
+        }
     }
 }

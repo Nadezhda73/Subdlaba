@@ -54,5 +54,45 @@ namespace Subdlaba.Services
         {
             return db.Timings.FirstOrDefault(c => c.Id == Id);
         }
+        public void CreateTiming(DateTime StartTask, DateTime FinishTask, int TrackerId)
+        {
+            Timing timing = new Timing()
+            {
+                StartTask = StartTask,
+                FinishTask = FinishTask,
+                TrackerId = TrackerId
+            };
+            Create(timing);
+        }
+        public void DeleteTiming(int Id, DateTime StartTask, DateTime FinishTask, int TrackerId)
+        {
+            Timing timing = new Timing()
+            {
+                Id = Id,
+                StartTask = StartTask,
+                FinishTask = FinishTask,
+                TrackerId = TrackerId
+            };
+            Delete(timing);
+        }
+
+        public void UpdateTiming(int Id, DateTime StartTask, DateTime FinishTask, int TrackerId)
+        {
+            Timing timing = new Timing()
+            {
+                Id = Id,
+                StartTask = StartTask,
+                FinishTask = FinishTask,
+                TrackerId = TrackerId
+            };
+            Update(timing);
+        }
+        public void ReadTiming()
+        {
+            foreach (var p in Read())
+            {
+                Console.WriteLine(p.StartTask + " " + p.FinishTask + " " + p.TrackerId);
+            }
+        }
     }
 }

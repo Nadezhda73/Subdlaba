@@ -71,5 +71,46 @@ namespace Subdlaba.Services
                 Console.WriteLine(c.Username + " " + c.Name);
             }
         }
+        public void CreateCustomer(string Username, string Email, int ProjectId)
+        {
+            Customer customer = new Customer()
+            {
+                Username = Username,
+                Email = Email,
+                ProjectId = ProjectId
+            };
+            Create(customer);
+        }
+        public void DeleteCustomer(int Id, string Username, string Email, int ProjectId)
+        {
+            Customer customer = new Customer()
+            {
+                Id = Id,
+                Username = Username,
+                Email = Email,
+                ProjectId = ProjectId
+            };
+            Delete(customer);
+        }
+        public void UpdateCustomer(int Id, string Username, string Email, int ProjectId)
+        {
+            var list = Get(Id);
+            Customer customer = new Customer()
+            {
+                Id = list.Id,
+                Username = Username,
+                Email = Email,
+                ProjectId = ProjectId
+            };
+            Update(customer);
+        }
+        public void ReadCustomer()
+        {
+            var list = Read();
+            foreach (var p in list)
+            {
+                Console.WriteLine(p.Id + " " + p.Username + " " + p.Email + " " + p.ProjectId);
+            }
+        }
     }
 }

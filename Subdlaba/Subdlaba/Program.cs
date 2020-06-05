@@ -1,5 +1,4 @@
-﻿using Subdlaba.BusinessLogic;
-using Subdlaba.Services;
+﻿using Subdlaba.Services;
 using System;
 using System.Diagnostics;
 
@@ -8,42 +7,46 @@ namespace Subdlaba
     public class Program
     {
         public static readonly TaskTrackerDatabase db = new TaskTrackerDatabase();
+        private static CustomerService customerService;
+        private static DeveloperService developerService;
+        private static DeveloperTrackerService developerTrackerService;
+        private static ProjectService projectService;
+        private static TrackerService trackerService;
+        private static TimingService timingService;
         static void Main(string[] args)
         {
-            MainLogic logic = new MainLogic(new CustomerService(), new DeveloperService(), new DeveloperTrackerService(), new ProjectService(), new TrackerService(), new TimingService());
-            Insert(logic);
             TrackerService trackerLogic = new TrackerService();
             Stopwatch clock = new Stopwatch();
             clock.Start();
-            logic.CreateProject("Poneslas");
-            logic.ReadTracker();
-            logic.UpdateTracker(2, "Process", "Rabota", 2);
-            logic.DeleteTracker(2, "Process", "Rabota", 2);
-            logic.ProjectTracker();
-            logic.CustomerProject();
+            projectService.CreateProject("Poneslas");
+            trackerService.ReadTracker();
+            trackerService.UpdateTracker(2, "Process", "Rabota", 2);
+            trackerService.DeleteTracker(2, "Process", "Rabota", 2);
+            projectService.ProjectTracker();
+            customerService.CustomerProject();
             clock.Stop();
             Console.WriteLine(clock.ElapsedMilliseconds);
-
+            Insert();
         }
-        public static void Insert(MainLogic logic)
+        public static void Insert()
         {
-            logic.CreateCustomer("Kim Jong Un", "kndr@mail.ru", 1);
-            logic.CreateCustomer("Volk", "goflex@gmail.com", 2);
+            customerService.CreateCustomer("Kim Jong Un", "kndr@mail.ru", 1);
+            customerService.CreateCustomer("Volk", "goflex@gmail.com", 2);
 
-            logic.CreateDeveloper("Bandit", "Admin");
-            logic.CreateDeveloper("Tyler", "The Creator");
+            developerService.CreateDeveloper("Bandit", "Admin");
+            developerService.CreateDeveloper("Tyler", "The Creator");
 
-            logic.CreateDeveloperTracker(1, 2);
-            logic.CreateDeveloperTracker(1, 2);
+            developerTrackerService.CreateDeveloperTracker(1, 2);
+            developerTrackerService.CreateDeveloperTracker(1, 2);
 
-            logic.CreateProject("Bonk");
-            logic.CreateProject("Den sna");
+            projectService.CreateProject("Bonk");
+            projectService.CreateProject("Den sna");
 
-            logic.CreateTiming(DateTime.Parse("08.08.2008"), DateTime.Parse("08.08.2009"), 1);
-            logic.CreateTiming(DateTime.Parse("02.02.2020"), DateTime.Parse("11.11.2020"), 2);
+            timingService.CreateTiming(DateTime.Parse("08.08.2008"), DateTime.Parse("08.08.2009"), 1);
+            timingService.CreateTiming(DateTime.Parse("02.02.2020"), DateTime.Parse("11.11.2020"), 2);
 
-            logic.CreateTracker("Paid", "Create database", 1);
-            logic.CreateTracker("Closed", "Write", 2);
+            trackerService.CreateTracker("Paid", "Create database", 1);
+            trackerService.CreateTracker("Closed", "Write", 2);
 
         }
     }

@@ -56,5 +56,46 @@ namespace Subdlaba.Services
         {
             return db.Trackers.FirstOrDefault(c => c.Id == Id);
         }
+        public void CreateTracker(string Status, string Ticket, int ProjectId)
+        {
+            Tracker tracker = new Tracker()
+            {
+                Status = Status,
+                Ticket = Ticket,
+                ProjectId = ProjectId
+            };
+            Create(tracker);
+        }
+
+        public void DeleteTracker(int Id, string Status, string Ticket, int ProjectId)
+        {
+            Tracker tracker = new Tracker()
+            {
+                Id = Id,
+                Status = Status,
+                Ticket = Ticket,
+                ProjectId = ProjectId
+            };
+            Delete(tracker);
+        }
+
+        public void UpdateTracker(int Id, string Status, string Ticket, int ProjectId)
+        {
+            Tracker tracker = new Tracker()
+            {
+                Id = Id,
+                Status = Status,
+                Ticket = Ticket,
+                ProjectId = ProjectId
+            };
+            Update(tracker);
+        }
+        public void ReadTracker()
+        {
+            foreach (var p in Read())
+            {
+                Console.WriteLine(p.Status + " " + p.Ticket + " " + p.ProjectId);
+            }
+        }
     }
 }

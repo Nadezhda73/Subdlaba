@@ -65,5 +65,42 @@ namespace Subdlaba.Services
                 Console.WriteLine(c.Name + " " + c.Ticket + " " + c.StartTask + " " + c.FinishTask);
             }
         }
+        public void CreateDeveloper(string Username, string Working_Role)
+        {
+            Developer developer = new Developer()
+            {
+                Username = Username,
+                Working_Role = Working_Role
+            };
+            Create(developer);
+        }
+        public void DeleteDeveloper(int Id, string Username, string Working_Role)
+        {
+            Developer developer = new Developer()
+            {
+                Id = Id,
+                Username = Username,
+                Working_Role = Working_Role
+            };
+            Delete(developer);
+        }
+        public void UpdateDeveloper(int Id, string Username, string Working_Role)
+        {
+            Developer developer = new Developer()
+            {
+                Id = Id,
+                Username = Username,
+                Working_Role = Working_Role
+            };
+            Update(developer);
+        }
+        public void ReadDeveloper()
+        {
+            var list = Read();
+            foreach (var p in list)
+            {
+                Console.WriteLine(p.Username + " " + p.Working_Role);
+            }
+        }
     }
 }

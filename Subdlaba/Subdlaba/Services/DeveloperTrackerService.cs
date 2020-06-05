@@ -54,5 +54,35 @@ namespace Subdlaba.Services
         {
             return db.DeveloperTrackers.FirstOrDefault(c => c.Id == Id);
         }
+        public void CreateDeveloperTracker(int DeveloperId, int TrackerId)
+        {
+            DeveloperTracker developerTracker = new DeveloperTracker()
+            {
+                DeveloperId = DeveloperId,
+                TrackerId = TrackerId,
+            };
+            Create(developerTracker);
+        }
+        public void DeleteDeveloperTracker(int Id, int DeveloperId, int TrackerId)
+        {
+            DeveloperTracker developerTracker = new DeveloperTracker()
+            {
+                Id = Id,
+                DeveloperId = DeveloperId,
+                TrackerId = TrackerId
+            };
+            Delete(developerTracker);
+        }
+
+        public void UpdateDeveloperTracker(int Id, int DeveloperId, int TrackerId)
+        {
+            DeveloperTracker developerTracker = new DeveloperTracker()
+            {
+                Id = Id,
+                DeveloperId = DeveloperId,
+                TrackerId = TrackerId
+            };
+            Update(developerTracker);
+        }
     }
 }
