@@ -18,22 +18,12 @@ namespace Subdlaba.BusinessLogic
 
         public MainLogic(CustomerService customerService, DeveloperService developerService, DeveloperTrackerService developerTrackerService, ProjectService projectService, TrackerService trackerService, TimingService timingService)
         {
-            this.trackerService = trackerService;
-            this.projectService = projectService;
-            this.customerService = customerService;
-            this.developerService = developerService;
-            this.developerTrackerService = developerTrackerService;
-            this.timingService = timingService;
-        }
-
-        public MainLogic(CustomerService customerService, DeveloperService developerService, DeveloperTrackerService developerTrackerService, ProjectService projectService, TimingService timingService, TrackerService trackerService)
-        {
             this.customerService = customerService;
             this.developerService = developerService;
             this.developerTrackerService = developerTrackerService;
             this.projectService = projectService;
-            this.timingService = timingService;
             this.trackerService = trackerService;
+            this.timingService = timingService;
         }
 
         public void CreateCustomer(string Username, string Email, int ProjectId)

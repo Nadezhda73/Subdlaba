@@ -14,7 +14,7 @@ namespace Subdlaba.Services
 
         public void Create(Tracker model)
         {
-            var tracker = db.Trackers.FirstOrDefault(c => c.Status == model.Status);
+            var tracker = db.Trackers.FirstOrDefault(c => c.ProjectId == model.ProjectId);
             if (tracker != null)
             {
                 throw new Exception("Такой трекер уже есть");
