@@ -67,7 +67,7 @@ namespace Subdlaba.Services
         {
             return db.Developers.FirstOrDefault(c => c.Id == Id);
         }
-        public void Zapros_2()
+        public void ZaprosProjectTracker()
         {
             var project = from p in db.Projects
                           join c in db.Trackers on p.Id equals c.ProjectId

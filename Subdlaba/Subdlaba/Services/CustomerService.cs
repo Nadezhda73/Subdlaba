@@ -68,7 +68,7 @@ namespace Subdlaba.Services
             return db.Customers.FirstOrDefault(c => c.Id == Id);
         }
 
-        public void Zapros_1()
+        public void ZaprosCustomerProject()
         {
             var customers = db.Projects
                 .Join(db.Customers,

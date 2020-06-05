@@ -22,8 +22,8 @@ namespace Subdlaba
             trackerService.ReadTracker();
             trackerService.UpdateTracker(2, "Process", "Rabota", 2);
             trackerService.DeleteTracker(2, "Process", "Rabota", 2);
-            projectService.ProjectTracker();
-            customerService.CustomerProject();
+            developerService.ZaprosProjectTracker();
+            customerService.ZaprosCustomerProject();
             clock.Stop();
             Console.WriteLine(clock.ElapsedMilliseconds);
             Insert();
