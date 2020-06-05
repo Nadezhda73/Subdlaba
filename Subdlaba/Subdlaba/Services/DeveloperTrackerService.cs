@@ -44,10 +44,23 @@ namespace Subdlaba.Services
             developerTracker.Id = model.Id;
             db.SaveChanges();
         }
-
         public List<DeveloperTracker> Read()
         {
             return db.DeveloperTrackers.ToList();
+        }
+        public void ReadPage(int strCount, int strSkip)
+        {
+            var _event = from n in db.DeveloperTrackers.Skip(strSkip).Take(strCount)
+                         select new
+                         {
+                             n.Id,
+                             n.DeveloperId,
+                             n.TrackerId
+                         };
+            foreach (var c in _event)
+            {
+                Console.WriteLine(c.DeveloperId + " " + c.TrackerId);
+            }
         }
 
         public DeveloperTracker Get(int Id)

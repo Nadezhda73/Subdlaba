@@ -44,10 +44,23 @@ namespace Subdlaba.Services
             developer.Username = model.Username;
             db.SaveChanges();
         }
-
         public List<Developer> Read()
         {
             return db.Developers.ToList();
+        }
+        public void ReadPage(int strCount, int strSkip)
+        {
+            var _event = from n in db.Developers.Skip(strSkip).Take(strCount)
+                         select new
+                         {
+                             n.Id,
+                             n.Username,
+                             n.Working_Role
+                         };
+            foreach (var c in _event)
+            {
+                Console.WriteLine(c.Username + " " + c.Working_Role);
+            }
         }
 
         public Developer Get(int Id)

@@ -46,10 +46,24 @@ namespace Subdlaba.Services
             tracker.ProjectId = model.ProjectId;
             db.SaveChanges();
         }
-
         public List<Tracker> Read()
         {
             return db.Trackers.ToList();
+        }
+        public void ReadPage(int strCount, int strSkip)
+        {
+            var _event = from n in db.Trackers.Skip(strSkip).Take(strCount)
+                         select new
+                         {
+                             n.Id,
+                             n.Status,
+                             n.Ticket,
+                             n.ProjectId
+                         };
+            foreach (var c in _event)
+            {
+                Console.WriteLine(c.Status + " " + c.Ticket + " " + c.ProjectId);
+            }
         }
 
         public Tracker Get(int Id)

@@ -45,10 +45,22 @@ namespace Subdlaba.Services
             db.Projects.Remove(project);
             db.SaveChanges();
         }
-
         public List<Project> Read()
         {
             return db.Projects.ToList();
+        }
+        public void ReadPage(int strCount, int strSkip)
+        {
+            var _event = from n in db.Projects.Skip(strSkip).Take(strCount)
+                         select new
+                         {
+                             n.Id,
+                             n.Name
+                         };
+            foreach (var c in _event)
+            {
+                Console.WriteLine(c.Name);
+            }
         }
 
         public Project Get(int Id)

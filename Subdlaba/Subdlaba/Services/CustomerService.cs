@@ -44,10 +44,23 @@ namespace Subdlaba.Services
             customer.Username = model.Username;
             db.SaveChanges();
         }
-
         public List<Customer> Read()
         {
             return db.Customers.ToList();
+        }
+        public void ReadPage(int strCount, int strSkip)
+        {
+            var _event = from n in db.Customers.Skip(strSkip).Take(strCount)
+                         select new
+                         {
+                             n.Id,
+                             n.Username,
+                             n.Email
+                         };
+            foreach (var c in _event)
+            {
+                Console.WriteLine(c.Username + " " + c.Email);
+            }
         }
 
         public Customer Get(int Id)
